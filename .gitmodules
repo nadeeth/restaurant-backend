@@ -1,0 +1,3 @@
+[submodule "themes/restaurant/restaurant-frontend"]
+	path = themes/restaurant/restaurant-frontend
+	url = https://github.com/nadeeth/restaurant-frontend.git
