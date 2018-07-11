@@ -6,12 +6,15 @@
 <!--[if IE 7 ]><html lang="$ContentLocale" class="ie ie7"><![endif]-->
 <!--[if IE 8 ]><html lang="$ContentLocale" class="ie ie8"><![endif]-->
 <head>
+    $MetaTags
 	<% if not $WebpackDevServer || $Form %>
     	<% base_tag %>
 	<% else %>
 		<base href = "http://localhost:3000" />
     <% end_if %>
-    $MetaTags
+    <% if not $WebpackDevServer %>
+        <link href="public/static/css/main.c17080f1.css" rel="stylesheet">
+    <% end_if %>
 </head>
 <body>
 	<noscript>
@@ -20,7 +23,7 @@
 	<div id="root"></div>
 	$Layout
 	<% if not $WebpackDevServer %>
-    	
+    	<script type="text/javascript" src="public/static/js/main.a0b7d8d3.js"></script>
 	<% else %>
 		<script type="text/javascript" src="http://localhost:3000/static/js/bundle.js"></script>
     <% end_if %>
