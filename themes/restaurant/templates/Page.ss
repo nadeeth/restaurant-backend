@@ -6,7 +6,14 @@
 <!--[if IE 7 ]><html lang="$ContentLocale" class="ie ie7"><![endif]-->
 <!--[if IE 8 ]><html lang="$ContentLocale" class="ie ie8"><![endif]-->
 <head>
-    $MetaTags
+    <%-- $MetaTags --%>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
+    <meta name="theme-color" content="#000000">
+    <link rel="manifest" href="public/manifest.json">
+    <link rel="shortcut icon" href="public/favicon.ico">
+    <title>Restaurant App</title>
+
 	<% if not $WebpackDevServer || $Form %>
     	<% base_tag %>
 	<% else %>
