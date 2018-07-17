@@ -2,6 +2,7 @@
 
 use SilverStripe\CMS\Controllers\ContentController;
 use SilverStripe\Control\Director;
+use SilverStripe\Control\HTTPRequest;
 
 class PageController extends ContentController
 {
@@ -20,7 +21,9 @@ class PageController extends ContentController
      *
      * @var array
      */
-    private static $allowed_actions = [];
+    private static $allowed_actions = [
+        'content'
+    ];
 
     protected function init()
     {
@@ -36,5 +39,16 @@ class PageController extends ContentController
             // $socket = @fsockopen('localhost', 3000, $errno, $errstr, 1);
             // return !$socket ? false : true;
         }
+    }
+
+    public function content(HTTPRequest $request) {
+        $page = Page::get()->byID($this->ID);
+        $data = [
+            'Title' => $page->Title,
+            'MenuTitle' => $page->MenuTitle,
+            'URLSegment' => $page->URLSegment,
+            'Content' => $page->Content,
+        ];
+        return json_encode($data);
     }
 }

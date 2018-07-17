@@ -29,10 +29,12 @@
 	</noscript>
 	<div id="root"></div>
 	$Layout
-	<% if not $WebpackDevServer %>
-    	<script type="text/javascript" src="public/static/js/main.a0b7d8d3.js"></script>
-	<% else %>
-		<script type="text/javascript" src="http://localhost:3000/static/js/bundle.js"></script>
+    <% if not $Form %>
+        <% if not $WebpackDevServer %>
+            <script type="text/javascript" src="public/static/js/main.a0b7d8d3.js"></script>
+        <% else %>
+            <script type="text/javascript" src="http://localhost:3000/static/js/bundle.js"></script>
+        <% end_if %>
     <% end_if %>
 </body>
 </html>
