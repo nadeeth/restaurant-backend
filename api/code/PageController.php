@@ -3,6 +3,7 @@
 use SilverStripe\CMS\Controllers\ContentController;
 use SilverStripe\Control\Director;
 use SilverStripe\Control\HTTPRequest;
+use SilverStripe\CMS\Model\SiteTree;
 
 class PageController extends ContentController
 {
@@ -22,7 +23,7 @@ class PageController extends ContentController
      * @var array
      */
     private static $allowed_actions = [
-        'content'
+        'content','appMenu'
     ];
 
     protected function init()
@@ -49,6 +50,26 @@ class PageController extends ContentController
             'URLSegment' => $page->URLSegment,
             'Content' => $page->Content,
         ];
+        return json_encode($data);
+    }
+
+    public function appMenu(HTTPRequest $request) {
+        $pages = SiteTree::get()->filter([
+            'ParentID' => 0
+        ]);
+        $data = [];
+        foreach ($pages as $page) {
+            if ($page->ShowInMenus) {
+                $row = ['ID'=>$page->ID, 'MenuTitle'=>$page->MenuTitle, 'URL'=>$page->URLSegment];
+                foreach ($page->Children() as $child) {
+                    if ($child->ShowInMenus) {
+                        $row['Children'][] = 
+                            ['ID'=>$child->ID, 'MenuTitle'=>$child->MenuTitle, 'URL'=>$page->URLSegment.'/'.$child->URLSegment];
+                    }
+                }
+                $data[] = $row;
+            }
+        }
         return json_encode($data);
     }
 }
