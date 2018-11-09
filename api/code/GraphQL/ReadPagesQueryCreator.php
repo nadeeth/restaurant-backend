@@ -31,9 +31,13 @@ class ReadPagesQueryCreator extends QueryCreator implements OperationResolver
 
     public function resolve($object, array $args, $context, ResolveInfo $info)
     {
-        $list = SiteTree::get()->filter([
-            'URLSegment' => 'home'//$args['URLSegment']
-        ]);
+        if (isset($args['URLSegment'])) {
+            $list = SiteTree::get()->filter([
+                'URLSegment' => $args['URLSegment']
+            ]);
+        } else {
+            $list = SiteTree::get();
+        }
 
         return $list;
     }
