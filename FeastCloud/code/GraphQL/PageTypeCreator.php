@@ -1,17 +1,17 @@
 <?php
 
-namespace MyProject\GraphQL;
+namespace FeastCloud\GraphQL;
 
 use GraphQL\Type\Definition\Type;
 use SilverStripe\GraphQL\TypeCreator;
 use SilverStripe\GraphQL\Pagination\Connection;
 
-class MemberTypeCreator extends TypeCreator
+class PageTypeCreator extends TypeCreator
 {
     public function attributes()
     {
         return [
-            'name' => 'member'
+            'name' => 'page'
         ];
     }
 
@@ -19,9 +19,9 @@ class MemberTypeCreator extends TypeCreator
     {
         return [
             'ID' => ['type' => Type::nonNull(Type::id())],
-            'Email' => ['type' => Type::string()],
-            'FirstName' => ['type' => Type::string()],
-            'Surname' => ['type' => Type::string()],
+            'Title' => ['type' => Type::string()],
+            'URLSegment' => ['type' => Type::string()],
+            'Content' => ['type' => Type::string()],
         ];
     }
 }

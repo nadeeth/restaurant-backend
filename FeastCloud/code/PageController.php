@@ -42,17 +42,6 @@ class PageController extends ContentController
         }
     }
 
-    // public function content(HTTPRequest $request) {
-    //     $page = Page::get()->byID($this->ID);
-    //     $data = [
-    //         'Title' => $page->Title,
-    //         'MenuTitle' => $page->MenuTitle,
-    //         'URLSegment' => $page->URLSegment,
-    //         'Content' => $page->Content,
-    //     ];
-    //     return json_encode($data);
-    // }
-
     public function appMenu(HTTPRequest $request) {
         $pages = SiteTree::get()->filter([
             'ParentID' => 0

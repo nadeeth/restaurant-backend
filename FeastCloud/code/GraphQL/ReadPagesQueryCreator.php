@@ -1,6 +1,6 @@
 <?php
 
-namespace MyProject\GraphQL;
+namespace FeastCloud\GraphQL;
 
 use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;

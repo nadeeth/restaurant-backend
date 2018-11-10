@@ -1,0 +1,16 @@
+---
+Name: FeastCloud
+---
+SilverStripe\Core\Manifest\ModuleManifest:
+  project: FeastCloud
+
+SilverStripe\Core\Injector\Injector:
+  SilverStripe\GraphQL\Controller:
+    class: FeastCloud\GraphQL\FeastCloudController
+
+SilverStripe\GraphQL\Controller:
+  schema:
+    types:
+      page: 'FeastCloud\GraphQL\PageTypeCreator'
+    queries:
+      readPages: 'FeastCloud\GraphQL\ReadPagesQueryCreator'
