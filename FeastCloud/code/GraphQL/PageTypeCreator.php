@@ -19,9 +19,11 @@ class PageTypeCreator extends TypeCreator
     {
         return [
             'ID' => ['type' => Type::nonNull(Type::id())],
+            'MenuTitle' => ['type' => Type::string()],
             'Title' => ['type' => Type::string()],
             'URLSegment' => ['type' => Type::string()],
             'Content' => ['type' => Type::string()],
+            'ShowInMenus' => ['type' => Type::boolean()],
         ];
     }
 }

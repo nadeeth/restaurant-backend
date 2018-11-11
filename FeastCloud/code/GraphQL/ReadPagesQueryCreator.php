@@ -20,7 +20,8 @@ class ReadPagesQueryCreator extends QueryCreator implements OperationResolver
     public function args()
     {
         return [
-            'URLSegment' => ['type' => Type::string()]
+            'URLSegment' => ['type' => Type::string()],
+            'ShowInMenus' => ['type' => Type::boolean()],
         ];
     }
 
@@ -31,13 +32,16 @@ class ReadPagesQueryCreator extends QueryCreator implements OperationResolver
 
     public function resolve($object, array $args, $context, ResolveInfo $info)
     {
-        if (isset($args['URLSegment'])) {
-            $list = SiteTree::get()->filter([
-                'URLSegment' => $args['URLSegment']
-            ]);
-        } else {
-            $list = SiteTree::get();
+        $filters = [];
+
+        if (isset($args['ShowInMenus'])) {
+            $filters['ShowInMenus'] = $args['ShowInMenus'];
         }
+        if (isset($args['URLSegment'])) {
+            $filters['URLSegment'] = $args['URLSegment'];
+        }
+
+        $list = $filters ? SiteTree::get()->filter($filters) : SiteTree::get();
 
         return $list;
     }
