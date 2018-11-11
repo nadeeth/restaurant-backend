@@ -23,7 +23,7 @@ class PageController extends ContentController
      * @var array
      */
     private static $allowed_actions = [
-        'content','appMenu'
+        'appMenu'
     ];
 
     protected function init()

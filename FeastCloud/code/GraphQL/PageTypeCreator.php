@@ -24,6 +24,7 @@ class PageTypeCreator extends TypeCreator
             'URLSegment' => ['type' => Type::string()],
             'Content' => ['type' => Type::string()],
             'ShowInMenus' => ['type' => Type::boolean()],
+            'ClassName' => ['type' => Type::string()],
         ];
     }
 }
