@@ -13,6 +13,8 @@ SilverStripe\GraphQL\Controller:
     types:
       page: 'FeastCloud\GraphQL\PageTypeCreator'
       contactPage: 'FeastCloud\GraphQL\ContactPageTypeCreator'
+      homePage: 'FeastCloud\GraphQL\HomePageTypeCreator'
     queries:
       readPages: 'FeastCloud\GraphQL\ReadPagesQueryCreator'
       readContactPages: 'FeastCloud\GraphQL\ReadContactPagesQueryCreator'
+      readHomePages: 'FeastCloud\GraphQL\ReadHomePagesQueryCreator'
