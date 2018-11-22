@@ -15,7 +15,10 @@ SilverStripe\GraphQL\Controller:
       contactPage: 'FeastCloud\GraphQL\ContactPageTypeCreator'
       image: 'FeastCloud\GraphQL\ImageTypeCreator'
       homePage: 'FeastCloud\GraphQL\HomePageTypeCreator'
+      enquiry: 'FeastCloud\GraphQL\EnquiryTypeCreator'
     queries:
       readPages: 'FeastCloud\GraphQL\ReadPagesQueryCreator'
       readContactPages: 'FeastCloud\GraphQL\ReadContactPagesQueryCreator'
       readHomePages: 'FeastCloud\GraphQL\ReadHomePagesQueryCreator'
+    mutations:
+      createEnquiry: 'FeastCloud\GraphQL\CreateEnquiryMutationCreator'

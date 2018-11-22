@@ -13,7 +13,7 @@ class ContactPage extends Page
     public function getCMSFields() {
         $fields = parent::getCMSFields();
 
-        $fields->addFieldToTab('Root.Main', TextField::create('To', 'To Address (separate by spaces if you have many)'));
+        $fields->addFieldToTab('Root.Main', TextField::create('To', 'To Address'));
 
         return $fields;
     }
