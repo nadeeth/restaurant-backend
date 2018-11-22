@@ -19,7 +19,7 @@ class HomePageTypeCreator extends PageTypeCreator
         $fields = parent::fields();
 
         $fields['Background'] = [
-            'type' => Type::string()
+            'type' => $this->manager->getType('image')
         ];
 
         return $fields;
