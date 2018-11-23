@@ -6,17 +6,17 @@ use GraphQL\Type\Definition\ResolveInfo;
 use FeastCloud\GraphQL\ReadPagesQueryCreator;
 use GraphQL\Type\Definition\Type;
 
-class ReadHomePagesQueryCreator extends ReadPagesQueryCreator
+class ReadMenuPagesQueryCreator extends ReadPagesQueryCreator
 {
     public function attributes()
     {
         return [
-            'name' => 'readHomePages'
+            'name' => 'readMenuPages'
         ];
     }
 
     public function type()
     {
-        return Type::listOf($this->manager->getType('homePage'));
+        return Type::listOf($this->manager->getType('menuPage'));
     }
 }
