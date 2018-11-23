@@ -15,6 +15,7 @@ class HomePage extends Page
         $fields = parent::getCMSFields();
 
         $fields->addFieldToTab('Root.Main', UploadField::create('Background', 'Background Image'));
+        $fields->removeByName('Banner');
 
         return $fields;
     }
