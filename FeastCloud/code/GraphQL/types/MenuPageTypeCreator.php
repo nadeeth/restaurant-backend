@@ -20,14 +20,16 @@ class MenuPageTypeCreator extends PageTypeCreator
         $fields = parent::fields();
 
         $menuItemsConnection = Connection::create('MenuItems')
-            ->setConnectionType($this->manager->getType('menuItem'))
+            ->setConnectionType(function () {
+                return $this->manager->getType('menuItem');
+            })
             ->setDescription('A list of the menu items')
             ->setSortableFields(['ID', 'Title']);
 
         $fields['MenuItems'] = [
             'type' => $menuItemsConnection->toType(),
             'args' => $menuItemsConnection->args(),
-            'resolve' => function($object, array $args, $context, ResolveInfo $info) use ($menuItemsConnection) {
+            'resolve' => function($obj, $args, $context) use ($menuItemsConnection) {
                 return $menuItemsConnection->resolveList(
                     $obj->MenuItems(),
                     $args,

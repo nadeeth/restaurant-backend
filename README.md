@@ -18,7 +18,9 @@ or
 Frontend : Build the front end, and copy the content of the frontend's build directory into the backend's public directory. And then update Page.ss with the new js and css file hashes. This is to be automated later. 
 
 
+## GraphQL queries ##
 
+*Menu Page and Menu*
 query {
   readMenuPages(URLSegment: "menu") {
     MenuTitle
@@ -39,13 +41,18 @@ query {
       edges {
         node {
           Title
+          Price
+          Description
+          Image {
+            Filename
+          }
         }
       }
     }
   }
 }
 
-
+*Read Members and Groups*
 query {
   readMembers {
     ID
