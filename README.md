@@ -20,6 +20,29 @@ Frontend : Build the front end, and copy the content of the frontend's build dir
 
 ## GraphQL queries ##
 
+*To test GraphiQl Queries*
+http://localhost:8100/dev/graphiql
+
+*Pages*
+query {
+  readPages {
+    MenuTitle
+    Title
+    ID
+    URLSegment
+    Content
+    ShowInMenus
+    ClassName
+    Banner {
+      ID
+      Title
+      Name
+      Filename
+      File
+    }
+  }
+}
+
 *Menu Page and Menu*
 query {
   readMenuPages(URLSegment: "menu") {
@@ -49,6 +72,22 @@ query {
         }
       }
     }
+  }
+}
+
+*Create an enquiry / contact form submission*
+mutation {
+  createEnquiry(
+    Email: "john.doe@test.tes",
+    Name: "John Doe",
+    Phone: "022 7634567",
+    Message: "Test Enquiry."
+  ) {
+    ID
+    Email
+    Name
+    Phone
+    Message
   }
 }
 
