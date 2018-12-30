@@ -1,17 +1,15 @@
 <?php
-
 namespace FeastCloud\GraphQL;
 
 use GraphQL\Type\Definition\Type;
 use SilverStripe\GraphQL\TypeCreator;
-use SilverStripe\GraphQL\Pagination\Connection;
 
-class MenuItemTypeCreator extends TypeCreator
+class GroupTypeCreator extends TypeCreator
 {
     public function attributes()
     {
         return [
-            'name' => 'menuItem'
+            'name' => 'group'
         ];
     }
 
@@ -20,9 +18,7 @@ class MenuItemTypeCreator extends TypeCreator
         return [
             'ID' => ['type' => Type::nonNull(Type::id())],
             'Title' => ['type' => Type::string()],
-            'Description' => ['type' => Type::string()],
-            'Price' => ['type' => Type::string()],
-            'Image' => ['type' => $this->manager->getType('image')]
+            'Description' => ['type' => Type::string()]
         ];
     }
 }

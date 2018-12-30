@@ -16,3 +16,48 @@ or
 ## Deployment ##
 
 Frontend : Build the front end, and copy the content of the frontend's build directory into the backend's public directory. And then update Page.ss with the new js and css file hashes. This is to be automated later. 
+
+
+
+query {
+  readMenuPages(URLSegment: "menu") {
+    MenuTitle
+    Title
+    ID
+    URLSegment
+    Content
+    ShowInMenus
+    ClassName
+    Banner {
+      ID
+      Title
+      Name
+      Filename
+      File
+    }
+    MenuItems {
+      edges {
+        node {
+          Title
+        }
+      }
+    }
+  }
+}
+
+
+query {
+  readMembers {
+    ID
+    Email
+    FirstName
+    Groups {
+      edges {
+        node {
+          ID
+          Title
+        }
+      }
+    }
+  }
+}

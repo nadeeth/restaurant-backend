@@ -17,11 +17,14 @@ SilverStripe\GraphQL\Controller:
       homePage: 'FeastCloud\GraphQL\HomePageTypeCreator'
       enquiry: 'FeastCloud\GraphQL\EnquiryTypeCreator'
       menuPage: 'FeastCloud\GraphQL\MenuPageTypeCreator'
-      menuitem: 'FeastCloud\GraphQL\MenuItemTypeCreator'
+      menuItem: 'FeastCloud\GraphQL\MenuItemTypeCreator'
+      member: 'FeastCloud\GraphQL\MemberTypeCreator'
+      group: 'FeastCloud\GraphQL\GroupTypeCreator'
     queries:
       readPages: 'FeastCloud\GraphQL\ReadPagesQueryCreator'
       readContactPages: 'FeastCloud\GraphQL\ReadContactPagesQueryCreator'
       readHomePages: 'FeastCloud\GraphQL\ReadHomePagesQueryCreator'
       readMenuPages: 'FeastCloud\GraphQL\ReadMenuPagesQueryCreator'
+      readMembers: 'FeastCloud\GraphQL\ReadMembersQueryCreator'
     mutations:
       createEnquiry: 'FeastCloud\GraphQL\CreateEnquiryMutationCreator'
