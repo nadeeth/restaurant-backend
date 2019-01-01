@@ -31,6 +31,7 @@ class OrderTypeCreator extends TypeCreator
             'Phone' => ['type' => Type::string()],
             'PickUpTime' => ['type' => Type::int()],
             'Message' => ['type' => Type::string()],
+            'Status' => ['type' => Type::string()],
             'OrderItems' => [
                 'type' => $orderItemsConnection->toType(),
                 'args' => $orderItemsConnection->args(),

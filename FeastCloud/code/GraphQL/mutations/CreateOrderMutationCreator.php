@@ -25,22 +25,25 @@ class CreateOrderMutationCreator extends MutationCreator implements OperationRes
     public function args()
     {
         return [
+            'ID' => ['type' => Type::int()],
             'Email' => ['type' => Type::string()],
             'Name' => ['type' => Type::string()],
             'Phone' => ['type' => Type::nonNull(Type::string())],
             'PickUpTime' => ['type' => Type::int()],
-            'Message' => ['type' => Type::string()]
+            'Message' => ['type' => Type::string()],
+            'Status' => ['type' => Type::string()]
         ];
     }
 
     public function resolve($object, array $args, $context, ResolveInfo $info)
     {
-        $order = \Order::create();
+        $order = (isset($args['ID']) && $args['ID']) ? \Order::get()->byId($args['ID']) : \Order::create();
         $order->Email = $args['Email'];
         $order->Name = $args['Name'];
         $order->Phone = $args['Phone'];
         $order->PickUpTime = $args['PickUpTime'];
         $order->Message = $args['Message'];
+        $order->Status = $args['Status'];
         $order->write();
         return $order;
     }

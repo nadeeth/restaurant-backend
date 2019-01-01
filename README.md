@@ -108,14 +108,16 @@ query {
   }
 }
 
-*Create Orders*
+*Create/Update Orders - Check Order Model for all the Order Statuses, ommit ID whne creating*
 mutation {
   createOrder(
+    ID: 3
     Email: "john.doe@test.tes",
     Name: "John Doe",
     Phone: "022 7634567",
     PickUpTime: 123,
-    Message: "Test Order."
+    Message: "Test Order",
+    Status: "CustomerConfirmed"
   ) {
     ID
     Email
@@ -123,6 +125,7 @@ mutation {
     Phone
     PickUpTime
     Message
+    Status
   }
 }
 

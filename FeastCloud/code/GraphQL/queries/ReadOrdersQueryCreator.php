@@ -23,6 +23,7 @@ class ReadOrdersQueryCreator extends QueryCreator implements OperationResolver
             'Name' => ['type' => Type::string()],
             'Email' => ['type' => Type::string()],
             'Phone' => ['type' => Type::string()],
+            'Status' => ['type' => Type::string()]
         ];
     }
 
@@ -54,6 +55,9 @@ class ReadOrdersQueryCreator extends QueryCreator implements OperationResolver
         }
         if (isset($args['Phone'])) {
             $filters['Phone'] = $args['Phone'];
+        }
+        if (isset($args['Status'])) {
+            $filters['Status'] = $args['Status'];
         }
 
         $list = $filters ? \Order::get()->filter($filters) : \Order::get();
