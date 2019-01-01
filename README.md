@@ -107,3 +107,56 @@ query {
     }
   }
 }
+
+*Create Orders*
+mutation {
+  createOrder(
+    Email: "john.doe@test.tes",
+    Name: "John Doe",
+    Phone: "022 7634567",
+    PickUpTime: 123,
+    Message: "Test Order."
+  ) {
+    ID
+    Email
+    Name
+    Phone
+    PickUpTime
+    Message
+  }
+}
+
+*Create Order Items*
+mutation {
+  createOrderItem(
+    OrderID: 2,
+    Title: "Pasta Salad",
+    Price: 8.50,
+    Qty: 2
+  ) {
+    ID
+    Title
+    Price
+    Qty
+  }
+}
+
+*Read Orders*
+query {
+  readOrders(Email: "john.doe@test.tes") {
+    ID
+    Name
+    Email
+    Phone
+    PickUpTime
+    OrderItems {
+      edges {
+        node {
+          Title
+          Qty
+          Price
+        }
+      }
+    }
+  }
+}

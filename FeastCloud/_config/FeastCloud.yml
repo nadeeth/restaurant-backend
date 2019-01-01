@@ -20,11 +20,16 @@ SilverStripe\GraphQL\Controller:
       menuItem: 'FeastCloud\GraphQL\MenuItemTypeCreator'
       member: 'FeastCloud\GraphQL\MemberTypeCreator'
       group: 'FeastCloud\GraphQL\GroupTypeCreator'
+      order: 'FeastCloud\GraphQL\OrderTypeCreator'
+      orderItem: 'FeastCloud\GraphQL\OrderItemTypeCreator'
     queries:
       readPages: 'FeastCloud\GraphQL\ReadPagesQueryCreator'
       readContactPages: 'FeastCloud\GraphQL\ReadContactPagesQueryCreator'
       readHomePages: 'FeastCloud\GraphQL\ReadHomePagesQueryCreator'
       readMenuPages: 'FeastCloud\GraphQL\ReadMenuPagesQueryCreator'
       readMembers: 'FeastCloud\GraphQL\ReadMembersQueryCreator'
+      readOrders: 'FeastCloud\GraphQL\ReadOrdersQueryCreator'
     mutations:
       createEnquiry: 'FeastCloud\GraphQL\CreateEnquiryMutationCreator'
+      createOrder: 'FeastCloud\GraphQL\CreateOrderMutationCreator'
+      createOrderItem: 'FeastCloud\GraphQL\CreateOrderItemMutationCreator'
