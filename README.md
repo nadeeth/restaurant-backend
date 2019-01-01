@@ -144,6 +144,17 @@ mutation {
   }
 }
 
+*Delete Order Items*
+mutation {
+  deleteOrderItem(
+    ID: 1
+  ) {
+    ID
+    Title
+    Price
+  }
+}
+
 *Read Orders*
 query {
   readOrders(Email: "john.doe@test.tes") {

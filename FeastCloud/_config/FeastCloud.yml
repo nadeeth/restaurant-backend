@@ -33,3 +33,4 @@ SilverStripe\GraphQL\Controller:
       createEnquiry: 'FeastCloud\GraphQL\CreateEnquiryMutationCreator'
       createOrder: 'FeastCloud\GraphQL\CreateOrderMutationCreator'
       createOrderItem: 'FeastCloud\GraphQL\CreateOrderItemMutationCreator'
+      deleteOrderItem: 'FeastCloud\GraphQL\DeleteOrderItemMutationCreator'
