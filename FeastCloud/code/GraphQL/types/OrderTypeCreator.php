@@ -32,6 +32,10 @@ class OrderTypeCreator extends TypeCreator
             'PickUpTime' => ['type' => Type::int()],
             'Message' => ['type' => Type::string()],
             'Status' => ['type' => Type::string()],
+            'Total' => ['type' => Type::float()],
+            'Tax' => ['type' => Type::float()],
+            'Discount' => ['type' => Type::float()],
+            'NetTotal' => ['type' => Type::float()],
             'OrderItems' => [
                 'type' => $orderItemsConnection->toType(),
                 'args' => $orderItemsConnection->args(),

@@ -8,6 +8,10 @@ SilverStripe\Core\Injector\Injector:
   SilverStripe\GraphQL\Controller:
     class: FeastCloud\GraphQL\FeastCloudController
 
+Silverstripe\SiteConfig\SiteConfig:
+  extensions:
+    - CustomSiteConfig
+
 SilverStripe\GraphQL\Controller:
   schema:
     types:

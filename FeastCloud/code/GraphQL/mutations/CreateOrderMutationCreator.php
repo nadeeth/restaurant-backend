@@ -31,7 +31,11 @@ class CreateOrderMutationCreator extends MutationCreator implements OperationRes
             'Phone' => ['type' => Type::nonNull(Type::string())],
             'PickUpTime' => ['type' => Type::int()],
             'Message' => ['type' => Type::string()],
-            'Status' => ['type' => Type::string()]
+            'Status' => ['type' => Type::string()],
+            'Total' => ['type' => Type::float()],
+            'Tax' => ['type' => Type::float()],
+            'Discount' => ['type' => Type::float()],
+            'NetTotal' => ['type' => Type::float()],
         ];
     }
 
@@ -44,6 +48,10 @@ class CreateOrderMutationCreator extends MutationCreator implements OperationRes
         $order->PickUpTime = $args['PickUpTime'];
         $order->Message = $args['Message'];
         $order->Status = $args['Status'];
+        $order->Total = $args['Total'];
+        $order->Tax = $args['Tax'];
+        $order->Discount = $args['Discount'];
+        $order->NetTotal = $args['NetTotal'];
         $order->write();
         return $order;
     }

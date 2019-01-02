@@ -1,0 +1,18 @@
+<?php
+
+use SilverStripe\Admin\ModelAdmin;
+
+class OrderAdmin extends ModelAdmin 
+{
+
+    private static $managed_models = [
+        'Order',
+        'OrderItem'
+    ];
+
+    private static $url_segment = 'orders';
+
+    private static $menu_title = 'Orders';
+
+    // TODO : Complete the order process for the back end (Restaurent)
+}
