@@ -111,13 +111,17 @@ query {
 *Create/Update Orders - Check Order Model for all the Order Statuses, ommit ID whne creating*
 mutation {
   createOrder(
-    ID: 3
+    ID: 2
     Email: "john.doe@test.tes",
     Name: "John Doe",
-    Phone: "022 7634567",
+    Phone: "022 76345677",
     PickUpTime: 123,
     Message: "Test Order",
     Status: "CustomerConfirmed"
+    Total: 0
+    Tax: 12.5
+    Discount: 10
+    NetTotal: 0
   ) {
     ID
     Email
@@ -126,6 +130,10 @@ mutation {
     PickUpTime
     Message
     Status
+    Total
+    Tax
+    Discount
+    NetTotal
   }
 }
 
@@ -163,6 +171,11 @@ query {
     Email
     Phone
     PickUpTime
+    Status
+    Total
+    Tax
+    Discount
+    NetTotal
     OrderItems {
       edges {
         node {
