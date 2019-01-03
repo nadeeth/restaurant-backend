@@ -11,7 +11,7 @@ class CustomSiteConfig extends DataExtension
     private static $db = [
         'SendOrdersTo' => 'Varchar(50)',
         'OrderTax' => 'Decimal',
-        'OrderDiscout' => 'Decimal',
+        'OrderDiscount' => 'Decimal',
         'CustomerConfirmedEmailSubject' => 'Varchar(100)',
         'CustomerConfirmedEmailBody' => 'Text',
         'RestaurantConfirmedEmailSubject' => 'Varchar(100)',
@@ -24,7 +24,7 @@ class CustomSiteConfig extends DataExtension
     {
         $fields->addFieldToTab("Root.Orders", new TextField("SendOrdersTo"));
         $fields->addFieldToTab("Root.Orders", new TextField("OrderTax"));
-        $fields->addFieldToTab("Root.Orders", new TextField("OrderDiscout"));
+        $fields->addFieldToTab("Root.Orders", new TextField("OrderDiscount"));
         $fields->addFieldToTab("Root.Orders", new TextField("CustomerConfirmedEmailSubject"));
         $fields->addFieldToTab("Root.Orders", new TextareaField("CustomerConfirmedEmailBody"));
         $fields->addFieldToTab("Root.Orders", new TextField("RestaurantConfirmedEmailSubject"));

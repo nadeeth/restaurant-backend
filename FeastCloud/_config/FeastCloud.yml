@@ -26,6 +26,7 @@ SilverStripe\GraphQL\Controller:
       group: 'FeastCloud\GraphQL\GroupTypeCreator'
       order: 'FeastCloud\GraphQL\OrderTypeCreator'
       orderItem: 'FeastCloud\GraphQL\OrderItemTypeCreator'
+      siteConfig: 'FeastCloud\GraphQL\SiteConfigTypeCreator'
     queries:
       readPages: 'FeastCloud\GraphQL\ReadPagesQueryCreator'
       readContactPages: 'FeastCloud\GraphQL\ReadContactPagesQueryCreator'
@@ -33,6 +34,7 @@ SilverStripe\GraphQL\Controller:
       readMenuPages: 'FeastCloud\GraphQL\ReadMenuPagesQueryCreator'
       readMembers: 'FeastCloud\GraphQL\ReadMembersQueryCreator'
       readOrders: 'FeastCloud\GraphQL\ReadOrdersQueryCreator'
+      readSiteConfig: 'FeastCloud\GraphQL\ReadSiteConfigQueryCreator'
     mutations:
       createEnquiry: 'FeastCloud\GraphQL\CreateEnquiryMutationCreator'
       createOrder: 'FeastCloud\GraphQL\CreateOrderMutationCreator'
