@@ -187,3 +187,13 @@ query {
     }
   }
 }
+
+*Read SiteConfig*
+query {
+  readSiteConfig {
+    Title
+    Tagline
+    OrderTax
+    OrderDiscount
+  }
+}
