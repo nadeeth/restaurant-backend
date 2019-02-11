@@ -17,4 +17,12 @@ class OrderItem extends DataObject
     private static $has_one = [
         'Order' => 'Order'
     ];
+
+    public function getCMSFields() {
+        $fields = parent::getCMSFields();
+
+        //TODO: make some fields readonly 
+
+        return $fields;
+    }
 }

@@ -4,6 +4,7 @@ use SilverStripe\ORM\DataObject;
 use SilverStripe\Control\Email\Email;
 use SilverStripe\CMS\Model\SiteTree;
 use Silverstripe\SiteConfig\SiteConfig;
+use SilverStripe\Forms\DropdownField;
 
 class Order extends DataObject
 {
@@ -66,5 +67,14 @@ class Order extends DataObject
         */
 
         parent::onBeforeWrite();
+    }
+
+    public function getCMSFields() {
+        $fields = parent::getCMSFields();
+
+        //TODO: make some fields readonly 
+        $fields->addFieldToTab('Root.Main', DropdownField::create('Status', 'Status', Order::$order_statuses), 'Name');
+
+        return $fields;
     }
 }

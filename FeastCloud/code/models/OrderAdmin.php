@@ -6,8 +6,7 @@ class OrderAdmin extends ModelAdmin
 {
 
     private static $managed_models = [
-        'Order',
-        'OrderItem'
+        'Order'
     ];
 
     private static $url_segment = 'orders';
