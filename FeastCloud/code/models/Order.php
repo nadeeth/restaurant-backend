@@ -35,15 +35,89 @@ class Order extends DataObject
         'OrderItems' => 'OrderItem'
     ];
 
-    public function onBeforeWrite()
-    {
-        $config = SiteConfig::current_site_config(); 
+    public function getCMSFields() {
+        $fields = parent::getCMSFields();
 
-        // TODO : Send emails on order status change
-        // $subject = 'An enquiry from ' . $this->Name;
-        // $contactPage = SiteTree::get()->filter(['URLSegment'=>'contact-us'])->first();
-        // $email = new Email($this->Email, $contactPage->To, $subject, $this->Message);
-        // $email->sendPlain();
+        //TODO: make some fields readonly 
+        $fields->addFieldToTab('Root.Main', DropdownField::create('Status', 'Status', Order::$order_statuses), 'Name');
+
+        return $fields;
+    }
+
+    private function sendOrderEmail() {
+        $this->sendEmail('Email\\CustomerConfirmed',
+            'Order from ' . $this->Name, 
+            [
+                'Name' => $this->Name,
+                'Email' => $this->Email,
+                'Phone' => $this->Phone,
+                'PickUpTime' => $this->PickUpTime,
+                'Message' => $this->Message,
+                'Total' => $this->Total,
+                'Tax' => $this->Tax,
+                'Discount' => $this->Discount,
+                'NetTotal' => $this->NetTotal
+            ],
+            $this->Email,
+            $config->SendOrdersTo);
+    }
+
+    private function sendOrderConfirmation() {
+
+        $email_body = str_replace(
+            ['{Name}','{PickUpTime}'],
+            [$this->Name, $this->PickUpTime],
+            $config->RestaurantConfirmedEmailBody
+        );
+
+        $this->sendEmail('Email\\RestaurantConfirmed',
+            $config->RestaurantConfirmedEmailSubject, [$email_body], $config->SendOrdersTo, $this->Email);
+    }
+
+    private function sendReadyToCollectEmail() {
+
+        $email_body = str_replace(
+            ['{Name}','{NetTotal}'],
+            [$this->Name, $this->NetTotal],
+            $config->ReadyToPickUpEmailBody
+        );
+
+        $this->sendEmail('Email\\ReadyToCollect',
+            $config->ReadyToPickUpEmailSubject, [$email_body], $config->SendOrdersTo, $this->Email);
+    }
+
+    private function sendEmail($template, $subject, $data, $from, $to) {
+        $email = Email::create()
+                ->setHTMLTemplate($template) 
+                ->setData($data)
+                ->setFrom($from)
+                ->setTo($to)
+                ->setSubject($subject);
+
+        if ($email->send()) {
+            // Do some logging
+        } else {
+            // Do some logging
+        }
+    }
+
+    public function onBeforeWrite() {
+        $config = SiteConfig::current_site_config();
+
+        // Order received (CustomerConfirmed)
+        if (($this->Status == 'CustomerConfirmed') && $config->SendOrdersTo) {
+            $this->sendOrderEmail();            
+        }
+
+        // Order Confirmed by restaurant (RestaurantConfirmed)
+        if ($this->Status == 'RestaurantConfirmed') {
+            $this->sendOrderConfirmation();            
+        }
+
+        // Order ready to cllect
+        if ($this->Status == 'Ready') {
+            $this->sendReadyToCollectEmail();            
+        }
 
         // Do this whole thing in the Front End - Calculate order total, including service charges, discounts etc. 
         /*
@@ -67,14 +141,5 @@ class Order extends DataObject
         */
 
         parent::onBeforeWrite();
-    }
-
-    public function getCMSFields() {
-        $fields = parent::getCMSFields();
-
-        //TODO: make some fields readonly 
-        $fields->addFieldToTab('Root.Main', DropdownField::create('Status', 'Status', Order::$order_statuses), 'Name');
-
-        return $fields;
     }
 }

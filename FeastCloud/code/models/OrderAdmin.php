@@ -12,6 +12,4 @@ class OrderAdmin extends ModelAdmin
     private static $url_segment = 'orders';
 
     private static $menu_title = 'Orders';
-
-    // TODO : Complete the order process for the back end (Restaurent)
 }
