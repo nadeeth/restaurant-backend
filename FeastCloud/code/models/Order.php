@@ -11,11 +11,11 @@ class Order extends DataObject
     private static $table_name = 'Order';
 
     public static $order_statuses = [
-        'Created',
-        'CustomerConfirmed',
-        'RestaurantConfirmed',
-        'Ready',
-        'Collected'
+        'Created' => 'Created',
+        'CustomerConfirmed' => 'CustomerConfirmed',
+        'RestaurantConfirmed' => 'RestaurantConfirmed',
+        'Ready' => 'Ready',
+        'Collected' => 'Collected'
     ];
 
     private static $db = [
@@ -45,7 +45,10 @@ class Order extends DataObject
     }
 
     private function sendOrderEmail() {
-        $this->sendEmail('Email\\CustomerConfirmed',
+
+        $config = SiteConfig::current_site_config(); 
+
+        $this->sendEmail('CustomerConfirmed',
             'Order from ' . $this->Name, 
             [
                 'Name' => $this->Name,
@@ -56,7 +59,8 @@ class Order extends DataObject
                 'Total' => $this->Total,
                 'Tax' => $this->Tax,
                 'Discount' => $this->Discount,
-                'NetTotal' => $this->NetTotal
+                'NetTotal' => $this->NetTotal,
+                'OrderItems' => $this->OrderItems()
             ],
             $this->Email,
             $config->SendOrdersTo);
@@ -64,17 +68,21 @@ class Order extends DataObject
 
     private function sendOrderConfirmation() {
 
+        $config = SiteConfig::current_site_config();
+
         $email_body = str_replace(
             ['{Name}','{PickUpTime}'],
             [$this->Name, $this->PickUpTime],
             $config->RestaurantConfirmedEmailBody
         );
 
-        $this->sendEmail('Email\\RestaurantConfirmed',
-            $config->RestaurantConfirmedEmailSubject, [$email_body], $config->SendOrdersTo, $this->Email);
+        $this->sendEmail('RestaurantConfirmed',
+            $config->RestaurantConfirmedEmailSubject, ['EmailBody' => $email_body], $config->SendOrdersTo, $this->Email);
     }
 
     private function sendReadyToCollectEmail() {
+
+        $config = SiteConfig::current_site_config();
 
         $email_body = str_replace(
             ['{Name}','{NetTotal}'],
@@ -82,13 +90,13 @@ class Order extends DataObject
             $config->ReadyToPickUpEmailBody
         );
 
-        $this->sendEmail('Email\\ReadyToCollect',
-            $config->ReadyToPickUpEmailSubject, [$email_body], $config->SendOrdersTo, $this->Email);
+        $this->sendEmail('ReadyToCollect',
+            $config->ReadyToPickUpEmailSubject, ['EmailBody' => $email_body], $config->SendOrdersTo, $this->Email);
     }
 
     private function sendEmail($template, $subject, $data, $from, $to) {
         $email = Email::create()
-                ->setHTMLTemplate($template) 
+                ->setHTMLTemplate('Email\\'.$template) 
                 ->setData($data)
                 ->setFrom($from)
                 ->setTo($to)

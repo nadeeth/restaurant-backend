@@ -1,1 +1,1 @@
-$EmailBody
+$EmailBody.RAW
