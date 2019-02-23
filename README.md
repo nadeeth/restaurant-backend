@@ -197,3 +197,6 @@ query {
     OrderDiscount
   }
 }
+
+## User Roles ##
+TODO : Document the user roles and configuration 

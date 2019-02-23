@@ -5,6 +5,9 @@ use SilverStripe\Control\Email\Email;
 use SilverStripe\CMS\Model\SiteTree;
 use Silverstripe\SiteConfig\SiteConfig;
 use SilverStripe\Forms\DropdownField;
+use SilverStripe\Forms\ReadonlyField;
+use SilverStripe\Security\Permission;
+use SilverStripe\Security\Member;
 
 class Order extends DataObject
 {
@@ -35,11 +38,29 @@ class Order extends DataObject
         'OrderItems' => 'OrderItem'
     ];
 
+    private static $summary_fields = [
+        'Name',
+        'Status',
+        'PickUpTime'
+    ];
+
     public function getCMSFields() {
         $fields = parent::getCMSFields();
 
-        //TODO: make some fields readonly 
-        $fields->addFieldToTab('Root.Main', DropdownField::create('Status', 'Status', Order::$order_statuses), 'Name');
+        $status = DropdownField::create('Status', 'Status', Order::$order_statuses);
+        $fields->addFieldToTab('Root.Main', $status, 'Name');
+
+        if (!Permission::check('CMS_ACCESS_CMSMain', 'any', Member::currentUser())) {
+            $fields->addFieldToTab('Root.Main', ReadonlyField::create('Name', 'Name'));
+            $fields->addFieldToTab('Root.Main', ReadonlyField::create('Email', 'Email'));
+            $fields->addFieldToTab('Root.Main', ReadonlyField::create('Phone', 'Phone'));
+            $fields->addFieldToTab('Root.Main', ReadonlyField::create('PickUpTime', 'PickUpTime'));
+            $fields->addFieldToTab('Root.Main', ReadonlyField::create('Message', 'Message'));
+            $fields->addFieldToTab('Root.Main', ReadonlyField::create('Total', 'Total'));
+            $fields->addFieldToTab('Root.Main', ReadonlyField::create('Tax', 'Tax'));
+            $fields->addFieldToTab('Root.Main', ReadonlyField::create('Discount', 'Discount'));
+            $fields->addFieldToTab('Root.Main', ReadonlyField::create('NetTotal', 'NetTotal'));
+        }
 
         return $fields;
     }
@@ -149,5 +170,21 @@ class Order extends DataObject
         */
 
         parent::onBeforeWrite();
+    }
+
+    public function canView($member = null) {
+        return Permission::check('CMS_ACCESS_OrderAdmin', 'any', $member);
+    }
+
+    public function canEdit($member = null) {
+        return Permission::check('CMS_ACCESS_OrderAdmin', 'any', $member);
+    }
+
+    public function canDelete($member = null) {
+        return Permission::check('CMS_ACCESS_CMSMain', 'any', $member);
+    }
+
+    public function canCreate($member = null, $context = []) {
+        return Permission::check('CMS_ACCESS_CMSMain', 'any', $member);
     }
 }
