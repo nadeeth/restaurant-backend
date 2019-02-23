@@ -1,4 +1,11 @@
-<!DOCTYPE html>
+<%--<!DOCTYPE html>
+<!--
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+Simple. by Sara (saratusar.com, @saratusar) for Innovatif - an awesome Slovenia-based digital agency (innovatif.com/en)
+Change it, enhance it and most importantly enjoy it!
+>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+-->
+
 <!--[if !IE]><!-->
 <html lang="$ContentLocale">
 <!--<![endif]-->
@@ -6,35 +13,32 @@
 <!--[if IE 7 ]><html lang="$ContentLocale" class="ie ie7"><![endif]-->
 <!--[if IE 8 ]><html lang="$ContentLocale" class="ie ie8"><![endif]-->
 <head>
-    <%-- $MetaTags --%>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1,shrink-to-fit=no">
-    <meta name="theme-color" content="#000000">
-    <link rel="manifest" href="public/manifest.json">
-    <link rel="shortcut icon" href="public/favicon.ico">
-    <title>Restaurant App</title>
-
-	<% if not $WebpackDevServer || $Form %>
-    	<% base_tag %>
-	<% else %>
-		<base href = "http://localhost:3000" />
-    <% end_if %>
-    <% if not $WebpackDevServer %>
-        <link href="public/static/css/main.c17080f1.css" rel="stylesheet">
-    <% end_if %>
+	<% base_tag %>
+	<title><% if $MetaTitle %>$MetaTitle<% else %>$Title<% end_if %> &raquo; $SiteConfig.Title</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	$MetaTags(false)
+	<!--[if lt IE 9]>
+	<script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+	<% require themedCSS('reset') %>
+	<% require themedCSS('typography') %>
+	<% require themedCSS('form') %>
+	<% require themedCSS('layout') %>
+	<link rel="shortcut icon" href="themes/simple/images/favicon.ico" />
 </head>
-<body>
-	<noscript>
-		You need to enable JavaScript to run this app.
-	</noscript>
-	<div id="root"></div>
-	$Layout
-    <% if not $Form %>
-        <% if not $WebpackDevServer %>
-            <script type="text/javascript" src="public/static/js/main.a0b7d8d3.js"></script>
-        <% else %>
-            <script type="text/javascript" src="http://localhost:3000/static/js/bundle.js"></script>
-        <% end_if %>
-    <% end_if %>
+<body class="$ClassName.ShortName<% if not $Menu(2) %> no-sidebar<% end_if %>" <% if $i18nScriptDirection %>dir="$i18nScriptDirection"<% end_if %>>
+<% include Header %>
+<div class="main" role="main">
+	<div class="inner typography line">
+		$Layout
+	</div>
+</div>
+<% include Footer %>
+
+<% require javascript('//code.jquery.com/jquery-3.3.1.min.js') %>
+<% require themedJavascript('script') %>
+
 </body>
-</html>
+</html>--%>
