@@ -25,12 +25,6 @@ class OrderItem extends DataObject
         'Qty'
     ];
 
-    public function getCMSFields() {
-        $fields = parent::getCMSFields();
-        //TODO: hide order field 
-        return $fields;
-    }
-
     public function canView($member = null) {
         return Permission::check('CMS_ACCESS_OrderAdmin', 'any', $member);
     }
