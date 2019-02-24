@@ -6,6 +6,8 @@ use GraphQL\Type\Definition\ResolveInfo;
 use GraphQL\Type\Definition\Type;
 use SilverStripe\GraphQL\MutationCreator;
 use SilverStripe\GraphQL\OperationResolver;
+use SilverStripe\Security\Permission;
+use SilverStripe\Security\Member;
 
 class CreateOrderMutationCreator extends MutationCreator implements OperationResolver
 {
@@ -39,8 +41,18 @@ class CreateOrderMutationCreator extends MutationCreator implements OperationRes
         ];
     }
 
-    public function resolve($object, array $args, $context, ResolveInfo $info)
-    {
+    public function resolve($object, array $args, $context, ResolveInfo $info) {
+
+        if (!Member::currentUser() || !Permission::check('CMS_ACCESS_OrderAdmin', 'any', Member::currentUser())) {
+            $guest_actions = ['Created', 'CustomerConfirmed'];
+            if(!in_array($args['Status'], $guest_actions)) {
+                throw new \InvalidArgumentException(sprintf(
+                    '%s create access not permitted',
+                    Order::class
+                ));
+            }
+        }
+
         $order = (isset($args['ID']) && $args['ID']) ? \Order::get()->byId($args['ID']) : \Order::create();
         $order->Email = $args['Email'];
         $order->Name = $args['Name'];
