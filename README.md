@@ -200,3 +200,6 @@ query {
 
 ## User Roles ##
 TODO : Document the user roles and configuration 
+
+## CORS ##
+TODO : Document CORS configuration.

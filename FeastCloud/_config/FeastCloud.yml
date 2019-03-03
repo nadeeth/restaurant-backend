@@ -40,3 +40,9 @@ SilverStripe\GraphQL\Controller:
       createOrder: 'FeastCloud\GraphQL\CreateOrderMutationCreator'
       createOrderItem: 'FeastCloud\GraphQL\CreateOrderItemMutationCreator'
       deleteOrderItem: 'FeastCloud\GraphQL\DeleteOrderItemMutationCreator'
+  cors:
+    Enabled: true
+    Allow-Origin: '*'
+    Allow-Headers: 'Connection, Host, Origin, Referer, Access-Control-Request-Method, Access-Control-Request-Headers, User-Agent, Accept, Content-Type, Authorization, Content-Length, X-Requested-With, Accept-Encoding, Accept-Language'
+    Allow-Methods:  'GET, POST, OPTIONS'
+    Max-Age:  600  # 600 seconds = 10 minutes.
