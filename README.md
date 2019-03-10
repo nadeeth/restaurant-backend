@@ -35,6 +35,36 @@ query {
     ClassName
     Banner {
       ID
+      URL
+      Title
+      Name
+      Filename
+      File
+    }
+  }
+}
+
+*Home Page*
+query {
+  readHomePages(URLSegment: "home") {
+    MenuTitle
+    Title
+    ID
+    URLSegment
+    Content
+    ShowInMenus
+    ClassName
+    Banner {
+      ID
+      URL
+      Title
+      Name
+      Filename
+      File
+    }
+    Background {
+      ID
+      URL
       Title
       Name
       Filename
@@ -55,6 +85,7 @@ query {
     ClassName
     Banner {
       ID
+      URL
       Title
       Name
       Filename
@@ -67,6 +98,7 @@ query {
           Price
           Description
           Image {
+            URL
             Filename
           }
         }

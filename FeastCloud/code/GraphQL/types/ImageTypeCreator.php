@@ -22,7 +22,8 @@ class ImageTypeCreator extends TypeCreator
             'Title' => ['type' => Type::string()],
             'Name' => ['type' => Type::string()],
             'Filename' => ['type' => Type::string()],
-            'File' => ['type' => Type::string()]
+            'File' => ['type' => Type::string()],
+            'URL' => ['type' => Type::string()],
         ];
     }
 }
