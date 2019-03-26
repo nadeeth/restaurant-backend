@@ -25,12 +25,35 @@ class Enquiry extends DataObject
 
     public function onBeforeWrite()
     {
-        $subject = 'An enquiry from ' . $this->Name;
         $contactPage = SiteTree::get()->filter(['URLSegment'=>'contact-us'])->first();
-        $email = new Email($this->Email, $contactPage->To, $subject, $this->Message);
-        $email->sendPlain();
+
+        $this->sendEmail('Enquiry',
+            'An enquiry from ' . $this->Name, 
+            [
+                'Name' => $this->Name,
+                'Email' => $this->Email,
+                'Phone' => $this->Phone,
+                'Message' => $this->Message
+            ],
+            $this->Email,
+            $contactPage->To);
 
         parent::onBeforeWrite();
+    }
+
+    private function sendEmail($template, $subject, $data, $from, $to) {
+        $email = Email::create()
+                ->setHTMLTemplate('Email\\'.$template) 
+                ->setData($data)
+                ->setFrom($from)
+                ->setTo($to)
+                ->setSubject($subject);
+
+        if ($email->send()) {
+            // Do some logging
+        } else {
+            // Do some logging
+        }
     }
 
     public function canView($member = null) {
