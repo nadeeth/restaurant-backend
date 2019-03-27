@@ -20,6 +20,7 @@ class SiteConfigTypeCreator extends TypeCreator
         return [
             'Title' => ['type' => Type::string()],
             'Tagline' => ['type' => Type::string()],
+            'Logo' => ['type' => $this->manager->getType('image')],
             'OrderTax' => ['type' => Type::float()],
             'OrderDiscount' => ['type' => Type::float()]
         ];

@@ -225,6 +225,14 @@ query {
   readSiteConfig {
     Title
     Tagline
+    Logo {
+      ID
+      URL
+      Title
+      Name
+      Filename
+      File
+    }
     OrderTax
     OrderDiscount
   }

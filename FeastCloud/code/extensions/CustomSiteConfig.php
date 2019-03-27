@@ -4,6 +4,8 @@ use SilverStripe\Forms\FieldList;
 use SilverStripe\Forms\TextField;
 use SilverStripe\Forms\HTMLEditor\HTMLEditorField;
 use SilverStripe\ORM\DataExtension;
+use SilverStripe\Assets\Image;
+use SilverStripe\AssetAdmin\Forms\UploadField;
 
 class CustomSiteConfig extends DataExtension 
 {
@@ -18,8 +20,13 @@ class CustomSiteConfig extends DataExtension
         'ReadyToPickUpEmailBody' => 'HTMLText',
     ];
 
+    private static $has_one = [
+        'Logo' => Image::class
+    ];
+
     public function updateCMSFields(FieldList $fields) 
     {
+        $fields->addFieldToTab('Root.Main', UploadField::create('Logo'));
         $fields->addFieldToTab("Root.Orders", new TextField("SendOrdersTo"));
         $fields->addFieldToTab("Root.Orders", new TextField("OrderTax"));
         $fields->addFieldToTab("Root.Orders", new TextField("OrderDiscount"));
