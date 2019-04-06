@@ -25,7 +25,8 @@ class PageTypeCreator extends TypeCreator
             'Content' => ['type' => Type::string()],
             'ShowInMenus' => ['type' => Type::boolean()],
             'ClassName' => ['type' => Type::string()],
-            'Banner' => ['type' => $this->manager->getType('image')]
+            'Banner' => ['type' => $this->manager->getType('image')],
+            'ShowInFooterMenu' => ['type' => Type::boolean()]
         ];
     }
 }

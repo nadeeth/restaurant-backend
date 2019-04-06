@@ -32,6 +32,7 @@ query {
     URLSegment
     Content
     ShowInMenus
+    ShowInFooterMenu
     ClassName
     Banner {
       ID
