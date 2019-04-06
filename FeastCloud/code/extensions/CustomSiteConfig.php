@@ -18,6 +18,10 @@ class CustomSiteConfig extends DataExtension
         'RestaurantConfirmedEmailBody' => 'HTMLText',
         'ReadyToPickUpEmailSubject' => 'Varchar(100)',
         'ReadyToPickUpEmailBody' => 'HTMLText',
+        'FooterText' => 'Varchar(200)',
+        'Facebook' => 'Varchar(150)',
+        'Twitter' => 'Varchar(150)',
+        'Instagram' => 'Varchar(200)'
     ];
 
     private static $has_one = [
@@ -27,12 +31,18 @@ class CustomSiteConfig extends DataExtension
     public function updateCMSFields(FieldList $fields) 
     {
         $fields->addFieldToTab('Root.Main', UploadField::create('Logo'));
-        $fields->addFieldToTab("Root.Orders", new TextField("SendOrdersTo"));
-        $fields->addFieldToTab("Root.Orders", new TextField("OrderTax"));
-        $fields->addFieldToTab("Root.Orders", new TextField("OrderDiscount"));
-        $fields->addFieldToTab("Root.Orders", new TextField("RestaurantConfirmedEmailSubject"));
-        $fields->addFieldToTab("Root.Orders", new HTMLEditorField("RestaurantConfirmedEmailBody"));
-        $fields->addFieldToTab("Root.Orders", new TextField("ReadyToPickUpEmailSubject"));
-        $fields->addFieldToTab("Root.Orders", new HTMLEditorField("ReadyToPickUpEmailBody"));
+        $fields->addFieldToTab('Root.Main', new TextField('FooterText'));
+
+        $fields->addFieldToTab('Root.SocialMedia', new TextField('Facebook'));
+        $fields->addFieldToTab('Root.SocialMedia', new TextField('Twitter'));
+        $fields->addFieldToTab('Root.SocialMedia', new TextField('Instagram'));
+
+        $fields->addFieldToTab("Root.OrderSettings", new TextField("SendOrdersTo"));
+        $fields->addFieldToTab("Root.OrderSettings", new TextField("OrderTax"));
+        $fields->addFieldToTab("Root.OrderSettings", new TextField("OrderDiscount"));
+        $fields->addFieldToTab("Root.OrderSettings", new TextField("RestaurantConfirmedEmailSubject"));
+        $fields->addFieldToTab("Root.OrderSettings", new HTMLEditorField("RestaurantConfirmedEmailBody"));
+        $fields->addFieldToTab("Root.OrderSettings", new TextField("ReadyToPickUpEmailSubject"));
+        $fields->addFieldToTab("Root.OrderSettings", new HTMLEditorField("ReadyToPickUpEmailBody"));
     }
 }

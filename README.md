@@ -236,6 +236,10 @@ query {
     }
     OrderTax
     OrderDiscount
+    FooterText
+    Facebook
+    Instagram
+    Twitter
   }
 }
 
