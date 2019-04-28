@@ -21,7 +21,8 @@ class CustomSiteConfig extends DataExtension
         'FooterText' => 'Varchar(200)',
         'Facebook' => 'Varchar(150)',
         'Twitter' => 'Varchar(150)',
-        'Instagram' => 'Varchar(200)'
+        'Instagram' => 'Varchar(200)',
+        'YouTube' => 'Varchar(200)',
     ];
 
     private static $has_one = [
@@ -36,6 +37,7 @@ class CustomSiteConfig extends DataExtension
         $fields->addFieldToTab('Root.SocialMedia', new TextField('Facebook'));
         $fields->addFieldToTab('Root.SocialMedia', new TextField('Twitter'));
         $fields->addFieldToTab('Root.SocialMedia', new TextField('Instagram'));
+        $fields->addFieldToTab('Root.SocialMedia', new TextField('YouTube'));
 
         $fields->addFieldToTab("Root.OrderSettings", new TextField("SendOrdersTo"));
         $fields->addFieldToTab("Root.OrderSettings", new TextField("OrderTax"));

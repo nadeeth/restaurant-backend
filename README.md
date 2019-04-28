@@ -240,6 +240,7 @@ query {
     Facebook
     Instagram
     Twitter
+    YouTube
   }
 }
 

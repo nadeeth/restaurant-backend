@@ -25,6 +25,7 @@ class SiteConfigTypeCreator extends TypeCreator
             'Facebook' => ['type' => Type::string()],
             'Twitter' => ['type' => Type::string()],
             'Instagram' => ['type' => Type::string()],
+            'YouTube' => ['type' => Type::string()],
             'OrderTax' => ['type' => Type::float()],
             'OrderDiscount' => ['type' => Type::float()]
         ];
