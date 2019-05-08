@@ -19,6 +19,7 @@ class OrderItemTypeCreator extends TypeCreator
     {
         return [
             'ID' => ['type' => Type::nonNull(Type::id())],
+            'OrderID' => ['type' => Type::id()],
             'Title' => ['type' => Type::string()],
             'Price' => ['type' => Type::float()],
             'Qty' => ['type' => Type::int()]

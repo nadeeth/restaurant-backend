@@ -25,6 +25,7 @@ class CreateOrderItemMutationCreator extends MutationCreator implements Operatio
     public function args()
     {
         return [
+            'ID' => ['type' => Type::int()],
             'OrderID' => ['type' => Type::int()],
             'Title' => ['type' => Type::string()],
             'Price' => ['type' => Type::float()],
@@ -34,7 +35,7 @@ class CreateOrderItemMutationCreator extends MutationCreator implements Operatio
 
     public function resolve($object, array $args, $context, ResolveInfo $info)
     {
-        $orderItem = \OrderItem::create();
+        $orderItem = (isset($args['ID']) && $args['ID']) ? \OrderItem::get()->byId($args['ID']) : \OrderItem::create();
         $orderItem->Title = $args['Title'];
         $orderItem->Price = $args['Price'];
         $orderItem->Qty = $args['Qty'];
