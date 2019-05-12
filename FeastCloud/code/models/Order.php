@@ -25,7 +25,7 @@ class Order extends DataObject
         'Name' => 'Varchar(80)',
         'Email' => 'Varchar(50)',
         'Phone' => 'Varchar(20)',
-        'PickUpTime' => 'Varchar(32)',
+        'PickUpTime' => 'Varchar(42)',
         'Message' => 'Text',
         'Status' => 'Varchar(20)',
         'Total' => 'Decimal',
