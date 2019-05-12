@@ -31,13 +31,13 @@ class CreateOrderMutationCreator extends MutationCreator implements OperationRes
             'Email' => ['type' => Type::string()],
             'Name' => ['type' => Type::string()],
             'Phone' => ['type' => Type::nonNull(Type::string())],
-            'PickUpTime' => ['type' => Type::int()],
+            'PickUpTime' => ['type' => Type::string()],
             'Message' => ['type' => Type::string()],
             'Status' => ['type' => Type::string()],
             'Total' => ['type' => Type::float()],
             'Tax' => ['type' => Type::float()],
             'Discount' => ['type' => Type::float()],
-            'NetTotal' => ['type' => Type::float()],
+            'NetTotal' => ['type' => Type::float()]
         ];
     }
 

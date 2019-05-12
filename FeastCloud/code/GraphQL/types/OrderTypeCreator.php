@@ -29,7 +29,7 @@ class OrderTypeCreator extends TypeCreator
             'Name' => ['type' => Type::string()],
             'Email' => ['type' => Type::string()],
             'Phone' => ['type' => Type::string()],
-            'PickUpTime' => ['type' => Type::int()],
+            'PickUpTime' => ['type' => Type::string()],
             'Message' => ['type' => Type::string()],
             'Status' => ['type' => Type::string()],
             'Total' => ['type' => Type::float()],

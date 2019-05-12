@@ -148,7 +148,7 @@ mutation {
     Email: "john.doe@test.tes",
     Name: "John Doe",
     Phone: "022 76345677",
-    PickUpTime: 123,
+    PickUpTime: 'Date',
     Message: "Test Order",
     Status: "CustomerConfirmed"
     Total: 0

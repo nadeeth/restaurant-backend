@@ -25,7 +25,7 @@ class Order extends DataObject
         'Name' => 'Varchar(80)',
         'Email' => 'Varchar(50)',
         'Phone' => 'Varchar(20)',
-        'PickUpTime' => 'Int',
+        'PickUpTime' => 'Varchar(32)',
         'Message' => 'Text',
         'Status' => 'Varchar(20)',
         'Total' => 'Decimal',
@@ -43,6 +43,8 @@ class Order extends DataObject
         'Status',
         'PickUpTime'
     ];
+
+    private static $default_sort = 'Created DESC';
 
     public function getCMSFields() {
         $fields = parent::getCMSFields();
