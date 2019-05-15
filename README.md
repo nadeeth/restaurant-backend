@@ -148,13 +148,14 @@ mutation {
     Email: "john.doe@test.tes",
     Name: "John Doe",
     Phone: "022 76345677",
-    PickUpTime: 'Date',
+    PickUpTime: "Date",
     Message: "Test Order",
     Status: "CustomerConfirmed"
-    Total: 0
-    Tax: 12.5
-    Discount: 10
-    NetTotal: 0
+    Total: 0,
+    Tax: 12.5,
+    Discount: 10,
+    NetTotal: 0,
+    Items: "[{'Title':'ItemOne','Price':'14.50','Qty':2},{'Title':'ItemTwo','Price':'3.50','Qty':1}]"
   ) {
     ID
     Email

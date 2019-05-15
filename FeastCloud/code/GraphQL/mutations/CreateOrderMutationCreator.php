@@ -37,7 +37,8 @@ class CreateOrderMutationCreator extends MutationCreator implements OperationRes
             'Total' => ['type' => Type::float()],
             'Tax' => ['type' => Type::float()],
             'Discount' => ['type' => Type::float()],
-            'NetTotal' => ['type' => Type::float()]
+            'NetTotal' => ['type' => Type::float()],
+            'OrderItems' => ['type' => Type::string()]
         ];
     }
 
@@ -65,6 +66,20 @@ class CreateOrderMutationCreator extends MutationCreator implements OperationRes
         $order->Discount = $args['Discount'];
         $order->NetTotal = $args['NetTotal'];
         $order->write();
+
+        $orderItems = json_decode($args['OrderItems'], true);
+
+        foreach($orderItems as $item) {
+            if ($item['Title'] && $item['Price'] && $item['Qty']) {
+                $orderItem = \OrderItem::create();
+                $orderItem->Title = $item['Title'];
+                $orderItem->Price = $item['Price'];
+                $orderItem->Qty = $item['Qty'];
+                $orderItem->OrderID = $order->ID;
+                $orderItem->write();
+            }
+        }
+        
         return $order;
     }
 }
