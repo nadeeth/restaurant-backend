@@ -45,7 +45,7 @@ class CreateOrderMutationCreator extends MutationCreator implements OperationRes
     public function resolve($object, array $args, $context, ResolveInfo $info) {
 
         if (!Member::currentUser() || !Permission::check('CMS_ACCESS_OrderAdmin', 'any', Member::currentUser())) {
-            $guest_actions = ['Created', 'CustomerConfirmed'];
+            $guest_actions = ['Created', 'CustomerConfirmed', 'CustomerCreatedConfirmed'];
             if(!in_array($args['Status'], $guest_actions)) {
                 throw new \InvalidArgumentException(sprintf(
                     '%s create access not permitted',
@@ -60,7 +60,7 @@ class CreateOrderMutationCreator extends MutationCreator implements OperationRes
         $order->Phone = $args['Phone'];
         $order->PickUpTime = $args['PickUpTime'];
         $order->Message = $args['Message'];
-        $order->Status = $args['Status'];
+        $order->Status = $args['Status'] == 'CustomerCreatedConfirmed' ? 'Created' : $args['Status'];
         $order->Total = $args['Total'];
         $order->Tax = $args['Tax'];
         $order->Discount = $args['Discount'];
@@ -78,6 +78,11 @@ class CreateOrderMutationCreator extends MutationCreator implements OperationRes
                 $orderItem->OrderID = $order->ID;
                 $orderItem->write();
             }
+        }
+
+        if ($args['Status'] == 'CustomerCreatedConfirmed') {
+            $order->Status = 'CustomerConfirmed';
+            $order->write();
         }
         
         return $order;
