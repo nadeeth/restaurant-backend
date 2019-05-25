@@ -22,6 +22,7 @@ SilverStripe\GraphQL\Controller:
       enquiry: 'FeastCloud\GraphQL\EnquiryTypeCreator'
       menuPage: 'FeastCloud\GraphQL\MenuPageTypeCreator'
       menuItem: 'FeastCloud\GraphQL\MenuItemTypeCreator'
+      menuItemCategory: 'FeastCloud\GraphQL\MenuItemCategoryTypeCreator'
       member: 'FeastCloud\GraphQL\MemberTypeCreator'
       group: 'FeastCloud\GraphQL\GroupTypeCreator'
       order: 'FeastCloud\GraphQL\OrderTypeCreator'
@@ -38,8 +39,8 @@ SilverStripe\GraphQL\Controller:
     mutations:
       createEnquiry: 'FeastCloud\GraphQL\CreateEnquiryMutationCreator'
       createOrder: 'FeastCloud\GraphQL\CreateOrderMutationCreator'
-      createOrderItem: 'FeastCloud\GraphQL\CreateOrderItemMutationCreator'
-      deleteOrderItem: 'FeastCloud\GraphQL\DeleteOrderItemMutationCreator'
+      #createOrderItem: 'FeastCloud\GraphQL\CreateOrderItemMutationCreator'
+      #deleteOrderItem: 'FeastCloud\GraphQL\DeleteOrderItemMutationCreator'
   cors:
     Enabled: true
     Allow-Origin: '*'

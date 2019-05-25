@@ -19,6 +19,13 @@ class MenuPage extends Page
             new GridField('MenuItems', 'Menu Items', $this->MenuItems(), $config)
         );
 
+        $fields->addFieldToTab('Root.Categories', GridField::create(
+            'Category',
+            'Category',
+            MenuItemCategory::get(),
+            GridFieldConfig_RecordEditor::create()
+        ));
+
         return $fields;
     }
 }

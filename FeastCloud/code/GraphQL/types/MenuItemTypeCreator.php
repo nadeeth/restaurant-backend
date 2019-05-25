@@ -22,7 +22,8 @@ class MenuItemTypeCreator extends TypeCreator
             'Title' => ['type' => Type::string()],
             'Description' => ['type' => Type::string()],
             'Price' => ['type' => Type::string()],
-            'Image' => ['type' => $this->manager->getType('image')]
+            'Image' => ['type' => $this->manager->getType('image')],
+            'Category' => ['type' => $this->manager->getType('menuItemCategory')]
         ];
     }
 }

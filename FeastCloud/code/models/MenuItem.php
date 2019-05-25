@@ -3,6 +3,8 @@
 use SilverStripe\ORM\DataObject;
 use SilverStripe\Assets\Image;
 use SilverStripe\AssetAdmin\Forms\UploadField;
+use SilverStripe\Forms\GridField\GridField;
+use SilverStripe\Forms\GridField\GridFieldConfig_RecordEditor;
 
 class MenuItem extends DataObject
 {
@@ -16,7 +18,8 @@ class MenuItem extends DataObject
 
     private static $has_one = [
         'Image' => Image::class,
-        'MenuPage' => 'MenuPage'
+        'MenuPage' => 'MenuPage',
+        'Category' => 'MenuItemCategory'
     ];
 
     public function getCMSFields() {

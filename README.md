@@ -98,6 +98,9 @@ query {
           Title
           Price
           Description
+          Category {
+            Title
+          }
           Image {
             URL
             Filename
