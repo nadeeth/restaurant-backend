@@ -22,6 +22,8 @@ class SiteConfigTypeCreator extends TypeCreator
             'Tagline' => ['type' => Type::string()],
             'Logo' => ['type' => $this->manager->getType('image')],
             'FooterText' => ['type' => Type::string()],
+            'OpenTime' => ['type' => Type::string()],
+            'CloseTime' => ['type' => Type::string()],
             'Facebook' => ['type' => Type::string()],
             'Twitter' => ['type' => Type::string()],
             'Instagram' => ['type' => Type::string()],

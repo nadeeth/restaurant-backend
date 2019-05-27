@@ -23,6 +23,8 @@ class CustomSiteConfig extends DataExtension
         'Twitter' => 'Varchar(150)',
         'Instagram' => 'Varchar(200)',
         'YouTube' => 'Varchar(200)',
+        'OpenTime' => 'Varchar(5)',
+        'CloseTime' => 'Varchar(5)'
     ];
 
     private static $has_one = [
@@ -33,6 +35,8 @@ class CustomSiteConfig extends DataExtension
     {
         $fields->addFieldToTab('Root.Main', UploadField::create('Logo'));
         $fields->addFieldToTab('Root.Main', new TextField('FooterText'));
+        $fields->addFieldToTab('Root.Main', new TextField('OpenTime', 'Open Time (HH:mm)'));
+        $fields->addFieldToTab('Root.Main', new TextField('CloseTime', 'Close Time (HH:mm)'));
 
         $fields->addFieldToTab('Root.SocialMedia', new TextField('Facebook'));
         $fields->addFieldToTab('Root.SocialMedia', new TextField('Twitter'));
