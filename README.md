@@ -13,10 +13,6 @@ or
 3. update .env file (copy and modify .env.example)
 4. run dev/build?flush=1
 
-## Deployment ##
-
-Frontend : Build the front end, and copy the content of the frontend's build directory into the backend's public directory. And then update Page.ss with the new js and css file hashes. This is to be automated later. 
-
 
 ## GraphQL queries ##
 
